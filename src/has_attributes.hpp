@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vcruntime.h>
 
 #if _HAS_NODISCARD
