@@ -301,7 +301,7 @@ public:
             return *this;
 
         if (str.length() == with.length()) {
-            memcpy(data_ + pos, with.data(), sizeof(value_type) * with.length());
+            std::memcpy(data_ + pos, with.data(), sizeof(value_type) * with.length());
             return *this;
         }
 
@@ -316,7 +316,7 @@ public:
             const auto diff = str.length() - with.length();
             erase(jump_pos, diff);
 
-            memcpy(data_ + pos, with.data(), sizeof(value_type) * with.length());
+            std::memcpy(data_ + pos, with.data(), sizeof(value_type) * with.length());
 
         }
         else {
@@ -326,7 +326,7 @@ public:
             for (auto i = length_; i != offset; i--)
                 data_[i + diff] = data_[i];
 
-            memcpy(data_ + pos, with.data(), sizeof(value_type) * with.length());
+            std::memcpy(data_ + pos, with.data(), sizeof(value_type) * with.length());
 
             length_ += (with.length() - str.length());
             data_[length_] = '\0';
@@ -371,7 +371,7 @@ public:
         if (offset > length_)
             offset = length_;
 
-        if (howManyElementsToDelete > (length_ - offset))
+        if (howManyElementsToDelete > ((length_ - offset) + 1))
             howManyElementsToDelete = (length_ - offset);
 
         for (auto i = offset; i < length_; i++)
@@ -380,7 +380,7 @@ public:
         length_ -= howManyElementsToDelete;
         data_[length_] = '\0';
         if (length_ > (capacity_ / 2))
-            reallocate(length_);
+            reallocate(length_ + 1);
     }
 
     void clear() noexcept {
@@ -396,7 +396,7 @@ public:
 
         pointer_type ret_string = new value_type[amount + 1];
 
-        memcpy(ret_string, data_ + index, sizeof(value_type) * amount + 1);
+        std::memcpy(ret_string, data_ + index, sizeof(value_type) * amount + 1);
 
         return { ret_string,amount };
     }
