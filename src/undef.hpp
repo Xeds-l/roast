@@ -1,3 +1,4 @@
+#pragma once
 #undef NODISCARD
 #undef INLINE_FUNCTION
 #undef INLINE_NAMESPACE
