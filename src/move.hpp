@@ -5,7 +5,7 @@
 namespace xed {
 
 template<typename T>
-inline constexpr NODISCARD remove_reference_t<T>&& move(T&& object) noexcept {
+constexpr inline NODISCARD remove_reference_t<T>&& move(T&& object) noexcept {
     return static_cast<remove_reference_t<T>&&>(object);
 }
 

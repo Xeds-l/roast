@@ -8,6 +8,7 @@
 #include "string_view.hpp"
 #include "has_attributes.hpp"
 #include <iosfwd>
+
 static constexpr std::size_t npos = -1;
 namespace xed {
 namespace details {
@@ -178,7 +179,9 @@ public:
         return data_[index];
     }
 
-    operator string_view() const noexcept { return { data_ ,length_ }; };
+    inline NODISCARD operator string_view() const noexcept { 
+        return { data_ ,length_ };
+    }
 
     inline NODISCARD bool operator==(const_pointer_type other) const noexcept {
         return
@@ -212,6 +215,7 @@ public:
     inline NODISCARD bool operator<(const_pointer_type other) const noexcept {
         return std::strncmp(data_, other.data(), sizeof(value_type) * length_) == 1;
     }
+
     inline NODISCARD bool operator>(const_pointer_type other) const noexcept {
         return std::strncmp(data_, other.data(), sizeof(value_type) * length_) == -1;
     }

@@ -16,8 +16,8 @@ public:
     using const_reference_type = const value_type&;
 
 
-    basic_string_view_reverse_iterator() noexcept = default;
-    basic_string_view_reverse_iterator(pointer_type ptr) noexcept : ptr_(ptr) {}
+    constexpr basic_string_view_reverse_iterator() noexcept = default;
+    constexpr basic_string_view_reverse_iterator(pointer_type ptr) noexcept : ptr_(ptr) {}
     constexpr inline NODISCARD this_type operator+(this_type ptr) const noexcept { return ptr_ - ptr; }
     constexpr inline NODISCARD this_type operator-(this_type ptr) const noexcept { return ptr_ + ptr; }
     constexpr inline NODISCARD this_type operator*(this_type ptr) const noexcept { return ptr_ * ptr; }
