@@ -364,20 +364,20 @@ public:
         data_[length_] = '\0';
     }
 
-    void erase(size_type offset, size_type howManyElementsToDelete = 1) {
-        if (length_ == 0 || howManyElementsToDelete == 0)
+    void erase(size_type offset, size_type amount = 1) {
+        if (length_ == 0 || amount == 0)
             return;
 
         if (offset > length_)
             offset = length_;
 
-        if (howManyElementsToDelete > ((length_ - offset) + 1))
-            howManyElementsToDelete = (length_ - offset);
+        if (amount > ((length_ - offset) + 1))
+            amount = (length_ - offset);
 
         for (auto i = offset; i < length_; i++)
-            data_[i] = data_[i + howManyElementsToDelete];
+            data_[i] = data_[i + amount];
 
-        length_ -= howManyElementsToDelete;
+        length_ -= amount;
         data_[length_] = '\0';
         if (length_ > (capacity_ / 2))
             reallocate(length_ + 1);
