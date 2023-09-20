@@ -319,7 +319,6 @@ public:
             const auto diff = with.length() - str.length();
             const auto offset = (length_ - diff) -1;
 
-            // "Hello" with "Ballslo" 
             for (auto i = length_; i != offset; i--)
                 data_[i + diff] = data_[i];
 
